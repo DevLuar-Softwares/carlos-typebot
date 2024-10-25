@@ -142,6 +142,11 @@
             "audio.mp3",
         },
         {
+          type: "video",
+          content:
+            "video.mp4",
+        },
+        {
           type: "text",
           content:
             "https://wa.me/message/WOHL3XTC6D2DD1",
@@ -178,6 +183,10 @@
             case "audio":
               const audioElement = createAudioElement(message.content);
               messageContent.appendChild(audioElement);
+              break;
+            case "video":
+              const videoElement = createVideoElement(message.content);
+              messageContent.appendChild(videoElement);
               break;
             case "image":
               const imageElement = createImageElement(message.content);
@@ -218,6 +227,15 @@
         });
 
         return audioElement;
+      }
+
+      function createVideoElement(src) {
+        const videoElement = document.createElement("video");
+        videoElement.controls = true;
+        videoElement.src = src;
+        videoElement.style.maxWidth = "100%";
+        videoElement.preload = "auto";
+        return videoElement;
       }
 
       function createImageElement(src) {
